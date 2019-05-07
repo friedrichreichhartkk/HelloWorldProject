@@ -18,10 +18,13 @@ public class MyFirstGUIWindow {
 
 	protected Shell shlFrWindow;
 	private Text vornameTF;
-	private Text text;
+	private Text nachnameTF;
+	private Label vornameOut;
+	private Label nachnameOut;
 
 	/**
 	 * Launch the application.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -57,35 +60,41 @@ public class MyFirstGUIWindow {
 		shlFrWindow.setFullScreen(true);
 		shlFrWindow.setSize(450, 300);
 		shlFrWindow.setText("FR Window");
-		
+
 		Button btnMybutton = new Button(shlFrWindow, SWT.NONE);
 		btnMybutton.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
 		btnMybutton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Knoppe gedrückt.");
-				System.out.println(vornameTF.getText());
+//				System.out.println(vornameTF.getText());
+				//
+				System.out.println(getVornameTF().getText());
+				System.out.println(getNachnameTF().getText());
+				//
+				getVornameOut().setText(getVornameTF().getText());
+				getNachnameOut().setText(getNachnameTF().getText());
 			}
 		});
 		btnMybutton.setBounds(44, 41, 75, 25);
 		btnMybutton.setText("MyButton");
-		
+
 		Label vornameL = new Label(shlFrWindow, SWT.NONE);
 		vornameL.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
 		vornameL.setBounds(44, 107, 55, 15);
 		vornameL.setText("Vorname");
-		
+
 		vornameTF = new Text(shlFrWindow, SWT.BORDER);
 		vornameTF.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
 		vornameTF.setBounds(105, 101, 128, 21);
-		
+
 		Label lblNachname = new Label(shlFrWindow, SWT.NONE);
 		lblNachname.setBounds(44, 139, 55, 15);
 		lblNachname.setText("Nachname");
-		
-		text = new Text(shlFrWindow, SWT.BORDER);
-		text.setBounds(105, 133, 128, 21);
-		
+
+		nachnameTF = new Text(shlFrWindow, SWT.BORDER);
+		nachnameTF.setBounds(105, 133, 128, 21);
+
 		Button btnAbbrechen = new Button(shlFrWindow, SWT.NONE);
 		btnAbbrechen.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -95,7 +104,7 @@ public class MyFirstGUIWindow {
 		});
 		btnAbbrechen.setBounds(137, 41, 75, 25);
 		btnAbbrechen.setText("abbrechen");
-		
+
 		Composite composite = new Composite(shlFrWindow, SWT.NONE);
 		composite.addMouseMoveListener(new MouseMoveListener() {
 			public void mouseMove(MouseEvent me) {
@@ -104,7 +113,27 @@ public class MyFirstGUIWindow {
 		});
 		composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		composite.setBounds(44, 171, 194, 80);
-		shlFrWindow.setTabList(new Control[]{text, vornameTF, btnMybutton});
+		
+		vornameOut = new Label(shlFrWindow, SWT.NONE);
+		vornameOut.setBounds(252, 101, 116, 21);
+		
+		nachnameOut = new Label(shlFrWindow, SWT.NONE);
+		nachnameOut.setBounds(252, 133, 116, 21);
+		shlFrWindow.setTabList(new Control[] { nachnameTF, vornameTF, btnMybutton });
 
+	}
+
+	public Text getVornameTF() {
+		return vornameTF;
+	}
+
+	public Text getNachnameTF() {
+		return nachnameTF;
+	}
+	public Label getVornameOut() {
+		return vornameOut;
+	}
+	public Label getNachnameOut() {
+		return nachnameOut;
 	}
 }
