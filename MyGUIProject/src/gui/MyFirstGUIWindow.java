@@ -9,6 +9,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import data.Person;
+
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.events.MouseMoveListener;
@@ -74,6 +77,22 @@ public class MyFirstGUIWindow {
 				//
 				getVornameOut().setText(getVornameTF().getText());
 				getNachnameOut().setText(getNachnameTF().getText());
+				//
+				Person p1; // Variablen Definition
+				p1 = new Person(); // Instanzierung
+				//
+				p1.setVorname(getVornameTF().getText());
+				p1.setNachname(getNachnameTF().getText());
+				//
+				System.out.println(p1);
+				//
+				Person.getListe().add(p1);
+				//
+				System.out.println(Person.getListe());
+				// alle felder loeschen
+				getVornameTF().setText("");
+				getNachnameTF().setText("");
+
 			}
 		});
 		btnMybutton.setBounds(44, 41, 75, 25);
